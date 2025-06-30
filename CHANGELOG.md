@@ -1,3 +1,20 @@
+## 0.10.26 (30/06/2025)
+### Bug Fixes
+* Fixed an ANR while inserting a message in Android
+* Fixed an issue where a bot fails to trigger during a chat in Android.
+* Fixed an issue where HTML tags appeared as plain text in chats in Android.
+* Fixed vote button misplacement in Android
+* Fixed a crash occurring during SDK initialization in Android
+* Fixed a CursorIndexOutOfBoundsException observed in logs in Android
+* Fixed an issue where the FAQ category list screen remained stuck in an infinite loading state in Android
+* Crash in SDK for StitchFix while fetching messages during launch in iOS
+* Fixed Intermittent Crash in restUser API in iOS
+* Fixed multi-select bottom sheet reset count and display incorrect value in iOS
+* Fixed Scroll not visible and keyboard not dismissing in iOS
+* Start rating in consecutive feedback messages not working in iOS
+* Fixed issue When bot conversation is assigned to agent the textfield is not displayed in iOS
+* Fixed a crash with Coredata in iOS
+
 ## 0.10.25 (20/03/2025)
 ### Bug Fixes
 * Fixed an issue with incorrect chat status that may cause the bot to restart during a chat in iOS.
