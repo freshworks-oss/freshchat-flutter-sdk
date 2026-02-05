@@ -32,9 +32,9 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 8.0)
     - nanopb (~> 3.30910.0)
   - Flutter (1.0.0)
-  - freshchat_sdk (0.10.26):
+  - freshchat_sdk (0.10.27):
     - Flutter
-    - FreshchatSDK (= 6.4.0)
+    - FreshchatSDK (= 6.4.5)
   - FreshchatSDK (6.4.0)
   - GoogleDataTransport (10.1.0):
     - nanopb (~> 3.30910.0)
