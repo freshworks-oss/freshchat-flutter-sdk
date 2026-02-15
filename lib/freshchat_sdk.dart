@@ -294,6 +294,14 @@ class Freshchat {
     return unreadCountStatus;
   }
 
+  /// Retrieve a count of unread messages for a specific topic with reference ID.
+  static Future<Map> getUnreadCountAsyncWithReferenceId(String topicName, String referenceId) async {
+    final Map unreadCountStatus = await _channel.invokeMethod(
+        'getUnreadCountAsyncWithReferenceId', 
+        <String, String>{'topicName': topicName, 'referenceId': referenceId});
+    return unreadCountStatus;
+  }
+
   /// Displays list of Support Channels (Channel List Activity) through which users can converse with you
   static void showConversations(
       {String? filteredViewTitle, List<String>? tags}) async {

@@ -292,6 +292,32 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
         Freshchat.getInstance(context).getUnreadCountAsync(unreadCountCallback, tags);
     }
 
+    public void getUnreadCountAsyncWithReferenceId(MethodCall call, final Result result) {
+        try {
+            String topicName = call.argument("topicName");
+            String referenceId = call.argument("referenceId");
+            Log.d(LOG_TAG, "getUnreadCountAsyncWithReferenceId called with topicName: " + topicName + ", referenceId: " + referenceId);
+
+            UnreadCountCallback unreadCountCallback = new UnreadCountCallback() {
+                @Override
+                public void onResult(FreshchatCallbackStatus status, int count) {
+                    Log.d(LOG_TAG, "Unread count callback - Status: " + status + ", Count: " + count);
+                    Map unreadCountStatus = new HashMap<>();
+                    unreadCountStatus.put("count", count);
+                    unreadCountStatus.put("status", status.name());
+                    result.success(unreadCountStatus);
+                }
+            };
+            Freshchat.getInstance(context).getUnreadCountAsyncWithReferenceId(unreadCountCallback, topicName, referenceId);
+        } catch (Exception e) {
+            Log.e(ERROR_TAG, "Error in getUnreadCountAsyncWithReferenceId: " + e.toString());
+            Map errorResult = new HashMap<>();
+            errorResult.put("count", 0);
+            errorResult.put("status", "ERROR");
+            result.success(errorResult);
+        }
+    }
+
     public void showConversationsWithOptions(MethodCall call) {
         try {
             List<String> tags = call.argument("tags");
@@ -615,6 +641,10 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
 
                 case "getUnreadCountAsyncForTags":
                     getUnreadCountAsyncForTags(call, result);
+                    break;
+
+                case "getUnreadCountAsyncWithReferenceId":
+                    getUnreadCountAsyncWithReferenceId(call, result);
                     break;
 
                 case "showConversationsWithOptions":
