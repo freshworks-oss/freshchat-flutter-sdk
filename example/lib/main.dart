@@ -198,34 +198,11 @@ class _MyAppState extends State<MyApp> {
 
   void getUnreadCountWithReferenceId() async {
     try {
-      // First, let's check the general unread count to see if there are any messages
-      Map generalCount = await Freshchat.getUnreadCountAsync;
-      print("General unread count: $generalCount");
-
-      // Using sample values - in real app these would come from user input or app state
-      // String topicName = Freshchat.getDefaultTopicName();
-      // String referenceId = Freshchat.getDefaultReferenceId();
       String topicName = "jeet topic";
       String referenceId = "547";
-
       print("Calling getUnreadCountAsyncWithReferenceId with:");
-      print("  topicName: '$topicName'");
-      print("  referenceId: '$referenceId'");
-
       unreadCountStatus = await Freshchat.getUnreadCountAsyncWithReferenceId(topicName, referenceId);
-
-      print("Unread count with reference ID - Topic: $topicName, Ref: $referenceId");
-      print("Result: $unreadCountStatus");
-
-      // Let's also try with different values to see if that works
-      String testTopicName = "ios beta testing";
-      String testReferenceId = "543";
-      Map testResult = await Freshchat.getUnreadCountAsyncWithReferenceId(testTopicName, testReferenceId);
-      print("Test with different values - Topic: $testTopicName, Ref: $testReferenceId");
-      print("Test Result: $testResult");
-
     } catch (e) {
-      print("Error getting unread count with reference ID: $e");
       unreadCountStatus = {"count": 0, "status": "ERROR"};
     }
   }
