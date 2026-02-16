@@ -274,7 +274,7 @@ NSNotificationCenter *center;
     NSString *topicName = call.arguments[@"topicName"];
     NSString *referenceId = call.arguments[@"referenceId"];
 
-    [[Freshchat sharedInstance] unreadCountWithTopicName:topicName referenceId:referenceId withCompletion:^(NSInteger unreadCount) {
+    [Freshchat sharedInstance] unreadCountForTopic:topicName forConversationReferenceID:referenceId withCompletion:^(NSInteger unreadCount) {
         @try {
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             [dic setValue:@"STATUS_SUCCESS"  forKey:@"status"];
