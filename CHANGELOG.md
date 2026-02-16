@@ -5,7 +5,6 @@
 * Handled statusbar color in Android 15 gracefully in Android.
 * Fixed an account migration failure in the deactive state in Android.
 * Bug fixes for null pointer exceptions when bundle is null in Android
-
 * Fixed an issue where the text field would not appear for up to 10 seconds when the first bot message included an `assignment` action in IOS
 * Added exception handling to HTML parsing to prevent crash in `Channels List` screen in IOS.
 * Fixed app stop responding to swipe gestures while opening a topic in a parallel conversation in IOS. 
