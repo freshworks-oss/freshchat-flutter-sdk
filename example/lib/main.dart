@@ -198,9 +198,12 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> getUnreadCountWithReferenceId() async {
     try {
-      String topicName = "jeet topic";
-      String referenceId = "547";
-      print("Calling getUnreadCountAsyncWithReferenceId with:");
+      String topicName = parallelConversationTopicName1.isNotEmpty
+          ? parallelConversationTopicName1
+          : parallelConversationTopicName2;
+      String referenceId = parallelConversationReferenceID1.isNotEmpty
+          ? parallelConversationReferenceID1
+          : parallelConversationReferenceID2;
       unreadCountStatus = await Freshchat.getUnreadCountAsyncWithReferenceId(topicName, referenceId);
     } catch (e) {
       unreadCountStatus = {"count": 0, "status": "ERROR"};
