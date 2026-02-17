@@ -196,7 +196,7 @@ class _MyAppState extends State<MyApp> {
     showDialog(context: context, builder: (context) => FaqTagAlert());
   }
 
-  void getUnreadCountWithReferenceId() async {
+  Future<void> getUnreadCountWithReferenceId() async {
     try {
       String topicName = "jeet topic";
       String referenceId = "547";
@@ -1024,15 +1024,16 @@ class _MyAppState extends State<MyApp> {
                       });
                       break;
                     case 10:
-                      setState(() {
-                        getUnreadCountWithReferenceId();
-                        int count = unreadCountStatus['count'];
-                        String status = unreadCountStatus['status'];
-                        final snackBar = SnackBar(
-                          content: Text(
-                              "Unread Count with Ref ID: $count  Status: $status"),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      getUnreadCountWithReferenceId().then((_) {
+                        setState(() {
+                          int count = unreadCountStatus['count'];
+                          String status = unreadCountStatus['status'];
+                          final snackBar = SnackBar(
+                            content: Text(
+                                "Unread Count with Ref ID: $count  Status: $status"),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        });
                       });
                       break;
                     case 11:
