@@ -1,3 +1,6 @@
+## 0.10.28 (18/02/2026)
+* Modified version from 0.10.26 to 0.10.28
+
 ## 0.10.27 (16/02/2026)
 ### Bug Fixes
 * Fixed the issue where Edittext is not expanding to Multiline in Android.
@@ -13,7 +16,6 @@
 ### Enhancements
 * Updated gradle-properties(8.2 to 8.7), build.gradle classpath( 8.2.0 - 8.6.0), kotlin version(1.8.22 - 2.1.0) in Android
 * Removed jcenter() in Android
-
 * Keychain items now use WhenUnlockedThisDeviceOnly for improved security in IOS
 * Improved app stability by moving heavy startup tasks to the background and making SDK initialization checks safer in IOS
 * Ensured correct date display in bot flows when a non-Gregorian calendar is selected in the device settings in IOS
