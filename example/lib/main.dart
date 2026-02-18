@@ -196,6 +196,20 @@ class _MyAppState extends State<MyApp> {
     showDialog(context: context, builder: (context) => FaqTagAlert());
   }
 
+  Future<void> getUnreadCountWithReferenceId() async {
+    try {
+      String topicName = parallelConversationTopicName1.isNotEmpty
+          ? parallelConversationTopicName1
+          : parallelConversationTopicName2;
+      String referenceId = parallelConversationReferenceID1.isNotEmpty
+          ? parallelConversationReferenceID1
+          : parallelConversationReferenceID2;
+      unreadCountStatus = await Freshchat.getUnreadCountAsyncWithReferenceId(topicName, referenceId);
+    } catch (e) {
+      unreadCountStatus = {"count": 0, "status": "ERROR"};
+    }
+  }
+
   void getParallelConversationData(BuildContext context) {
     var alert = AlertDialog(
       scrollable: true,
@@ -922,6 +936,7 @@ class _MyAppState extends State<MyApp> {
     features.add(addFeature("Send Message", Icons.send));
     features.add(addFeature("Add User Events", Icons.event));
     features.add(addFeature("Unread Count", Icons.markunread));
+    features.add(addFeature("Unread Count Ref ID", Icons.markunread_mailbox));
     features.add(addFeature("Topic Tags", Icons.list));
     features.add(addFeature("JWT Token", Icons.security));
     features.add(addFeature("Restore User", Icons.restore));
@@ -1012,21 +1027,34 @@ class _MyAppState extends State<MyApp> {
                       });
                       break;
                     case 10:
-                      setState(() {
-                        getTopicTags(context);
+                      getUnreadCountWithReferenceId().then((_) {
+                        setState(() {
+                          int count = unreadCountStatus['count'];
+                          String status = unreadCountStatus['status'];
+                          final snackBar = SnackBar(
+                            content: Text(
+                                "Unread Count with Ref ID: $count  Status: $status"),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        });
                       });
                       break;
                     case 11:
                       setState(() {
-                        setJwtToken(context);
+                        getTopicTags(context);
                       });
                       break;
                     case 12:
                       setState(() {
-                        restoreUser(context);
+                        setJwtToken(context);
                       });
                       break;
                     case 13:
+                      setState(() {
+                        restoreUser(context);
+                      });
+                      break;
+                    case 14:
                       setState(() {
                         restoreStreamSubscription.cancel();
                         fchatEventStreamSubscription.cancel();
@@ -1034,7 +1062,7 @@ class _MyAppState extends State<MyApp> {
                         linkOpenerSubscription.cancel();
                       });
                       break;
-                    case 14:
+                    case 15:
                       Map botVariables = {"Platform": "iOS"};
                       Map specificVariables = {
                         "2eaabcea-607a-417d-82f0-c9cef946d5dd": {
@@ -1044,24 +1072,24 @@ class _MyAppState extends State<MyApp> {
                       Freshchat.setBotVariables(
                           botVariables, specificVariables);
                       break;
-                    case 15:
+                    case 16:
                       getParallelConversationData(context);
                       break;
-                    case 16:
+                    case 17:
                       if (parallelConversationReferenceID1.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: new Text("Conversation Reference ID 1 is empty.")));
                       } else {
                         Freshchat.showConversationWithReferenceID(parallelConversationReferenceID1, parallelConversationTopicName1);
                       }
                       break;
-                    case 17:
+                    case 18:
                       if (parallelConversationReferenceID2.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: new Text("Conversation Reference ID 2 is empty.")));
                       } else {
                         Freshchat.showConversationWithReferenceID(parallelConversationReferenceID2, parallelConversationTopicName2);
                       }
                       break;
-                    case 18:
+                    case 19:
                       Freshchat.showConversations();
                       Future.delayed(Duration(seconds: 3), () {
                         Freshchat.dismissFreshchatView();

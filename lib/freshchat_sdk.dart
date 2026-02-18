@@ -229,7 +229,7 @@ class Freshchat {
     final String sdkVersion = await _channel.invokeMethod('getSdkVersion');
     final String operatingSystem = Platform.operatingSystem;
     // As there is no simple way to get current freshchat flutter sdk version, we are hardcoding here.
-    final String allSdkVersion = "flutter-0.10.26-$operatingSystem-$sdkVersion ";
+    final String allSdkVersion = "flutter-0.10.28-$operatingSystem-$sdkVersion ";
     return allSdkVersion;
   }
 
@@ -291,6 +291,14 @@ class Freshchat {
   static Future<Map> getUnreadCountAsyncForTags(List<String> tags) async {
     final Map unreadCountStatus = await _channel.invokeMethod(
         'getUnreadCountAsyncForTags', <String, List<String>>{'tags': tags});
+    return unreadCountStatus;
+  }
+
+  /// Retrieve a count of unread messages for a specific topic with reference ID.
+  static Future<Map> getUnreadCountAsyncWithReferenceId(String topicName, String referenceId) async {
+    final Map unreadCountStatus = await _channel.invokeMethod(
+        'getUnreadCountAsyncWithReferenceId', 
+        <String, String>{'topicName': topicName, 'referenceId': referenceId});
     return unreadCountStatus;
   }
 

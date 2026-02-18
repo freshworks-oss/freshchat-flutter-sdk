@@ -62,6 +62,9 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
     private static final String ERROR_TAG = "FRESHCHAT_ERROR";
     private static final String FRESHCHAT_USER_RESTORE_ID_GENERATED = "FRESHCHAT_USER_RESTORE_ID_GENERATED";
     private static final String FRESHCHAT_EVENTS = "FRESHCHAT_EVENTS";
+    private static final String ERROR_INVALID_PARAMETER = "INVALID_PARAMETER";
+    private static final String TOPIC_NAME = "topicName ";
+    private static final String REFERENCE_ID = "referenceId ";
     private static final String FRESHCHAT_ACTION_MESSAGE_COUNT_CHANGED = "FRESHCHAT_ACTION_MESSAGE_COUNT_CHANGED";
     private static final String ACTION_OPEN_LINKS = "ACTION_OPEN_LINKS";
     private static final String ACTION_LOCALE_CHANGED_BY_WEBVIEW = "ACTION_LOCALE_CHANGED_BY_WEBVIEW";
@@ -290,6 +293,37 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
             }
         };
         Freshchat.getInstance(context).getUnreadCountAsync(unreadCountCallback, tags);
+    }
+
+    public void getUnreadCountAsyncWithReferenceId(MethodCall call, final Result result) {
+        try {
+            String topicName = call.argument("topicName");
+            String referenceId = call.argument("referenceId");
+
+            // Validate parameters
+            if (topicName == null || topicName.trim().isEmpty()) {
+                result.error(ERROR_INVALID_PARAMETER, TOPIC_NAME , null);
+                return;
+            }
+            if (referenceId == null || referenceId.trim().isEmpty()) {
+                result.error(ERROR_INVALID_PARAMETER, REFERENCE_ID, null);
+                return;
+            }
+
+            UnreadCountCallback unreadCountCallback = new UnreadCountCallback() {
+                @Override
+                public void onResult(FreshchatCallbackStatus status, int count) {
+                    Map unreadCountStatus = new HashMap<>();
+                    unreadCountStatus.put("count", count);
+                    unreadCountStatus.put("status", status.name());
+                    result.success(unreadCountStatus);
+                }
+            };
+            Freshchat.getInstance(context).getUnreadCountAsyncWithReferenceId(unreadCountCallback, topicName, referenceId);
+        } catch (Exception e) {
+            Log.e(ERROR_TAG, e.toString());
+            result.error(ERROR_TAG, e.getMessage(), e.toString());
+        }
     }
 
     public void showConversationsWithOptions(MethodCall call) {
@@ -615,6 +649,10 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
 
                 case "getUnreadCountAsyncForTags":
                     getUnreadCountAsyncForTags(call, result);
+                    break;
+
+                case "getUnreadCountAsyncWithReferenceId":
+                    getUnreadCountAsyncWithReferenceId(call, result);
                     break;
 
                 case "showConversationsWithOptions":

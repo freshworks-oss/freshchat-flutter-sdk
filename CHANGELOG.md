@@ -1,3 +1,26 @@
+## 0.10.28 (18/02/2026)
+* Modified version from 0.10.26 to 0.10.28
+
+## 0.10.27 (16/02/2026)
+### Bug Fixes
+* Fixed the issue where Edittext is not expanding to Multiline in Android.
+* Fixed an issue where welcome msgs content is not clickable in Android.
+* Handled statusbar color in Android 15 gracefully in Android.
+* Fixed an account migration failure in the deactive state in Android.
+* Bug fixes for null pointer exceptions when bundle is null in Android
+* Fixed an issue where the text field would not appear for up to 10 seconds when the first bot message included an `assignment` action in IOS
+* Added exception handling to HTML parsing to prevent crash in `Channels List` screen in IOS.
+* Fixed app stop responding to swipe gestures while opening a topic in a parallel conversation in IOS. 
+* Fixed an issue where messages sent after the post-resolution feedback survey did not start a new conversation in IOS.
+
+### Enhancements
+* Updated gradle-properties(8.2 to 8.7), build.gradle classpath( 8.2.0 - 8.6.0), kotlin version(1.8.22 - 2.1.0) in Android
+* Removed jcenter() in Android
+* Keychain items now use WhenUnlockedThisDeviceOnly for improved security in IOS
+* Improved app stability by moving heavy startup tasks to the background and making SDK initialization checks safer in IOS
+* Ensured correct date display in bot flows when a non-Gregorian calendar is selected in the device settings in IOS
+* Channel fetching is now performed safely after the completion of pending tasks, and only when the account is confirmed to be active in IOS
+
 ## 0.10.26 (30/06/2025)
 ### Bug Fixes
 * Fixed an ANR while inserting a message in Android
