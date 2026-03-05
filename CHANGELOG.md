@@ -1,4 +1,4 @@
-## 0.10.27 (05/03/2026)
+## 0.10.29 (05/03/2026)
 ### Bug Fixes
 * Fixed a namespace collision issue between FreshchatSDK and the NewsCore framework in iOS.
 * Fixed a rare issue where initial AI agent or bot messages were repeated and getting grouped (clumped) together in iOS.
