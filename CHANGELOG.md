@@ -1,3 +1,9 @@
+## 0.10.27 (05/03/2026)
+### Bug Fixes
+* Fixed a namespace collision issue between FreshchatSDK and the NewsCore framework in iOS.
+* Fixed a rare issue where initial AI agent or bot messages were repeated and getting grouped (clumped) together in iOS.
+* Fixed an issue where the keyboard was being dismissed automatically while the user was typing when an AI agent or bot responding to chat conversation in iOS.
+
 ## 0.10.28 (18/02/2026)
 * Modified version from 0.10.26 to 0.10.28
 
