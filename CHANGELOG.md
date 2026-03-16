@@ -1,3 +1,11 @@
+## 0.10.30 (16/03/2026)
+### Enhancement :
+* Added support for the new EUN data center to ensure improved infrastructure compatibility and better service availability.
+
+### Bug fix :
+* Fixed an issue where the reply text field was incorrectly visible for bot response feedback messages in iOS.
+* Fixed display of internal model ID instead of model name for 17e device in iOS.
+
 ## 0.10.29 (05/03/2026)
 ### Bug Fixes
 * Fixed a namespace collision issue between FreshchatSDK and the NewsCore framework in iOS.
