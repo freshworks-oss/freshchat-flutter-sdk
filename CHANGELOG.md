@@ -1,8 +1,8 @@
 ## 0.10.31 (17/04/2026)
 ### Bug Fixes:
-* Included Custom styles with state_focused support
-* Fixed re-occurring toolbar overlapping issue
-* Fixed Bot-retriggering in the middle of an agent conversation
+* Included Custom styles with state_focused support.
+* Fixed re-occurring toolbar overlapping issue.
+* Fixed Bot-retriggering in the middle of an agent conversation.
 
 ## 0.10.30 (16/03/2026)
 ### Enhancement :
