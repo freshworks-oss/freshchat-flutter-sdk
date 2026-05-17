@@ -1,8 +1,21 @@
+## 0.10.33 (17/05/2026)
+### Bug Fix : 
+* Automated release
+* Public repo PR
+### Feature :
+* Release Automation
+
+## 0.10.32 (17/05/2026)
+### Bug Fix :
+* Fixed release automation issue.
+### Enhancement :
+* Implemented release automation.
+
 ## 0.10.31 (17/04/2026)
 ### Bug Fixes:
-* Included Custom styles with state_focused support.
-* Fixed re-occurring toolbar overlapping issue.
-* Fixed Bot-retriggering in the middle of an agent conversation.
+* Included Custom styles with state_focused support in Android.
+* Fixed re-occurring toolbar overlapping issue in Android.
+* Fixed Bot-retriggering in the middle of an agent conversation in Android.
 
 ## 0.10.30 (16/03/2026)
 ### Enhancement :
@@ -19,7 +32,7 @@
 * Fixed an issue where the keyboard was being dismissed automatically while the user was typing when an AI agent or bot responding to chat conversation in iOS.
 
 ## 0.10.28 (18/02/2026)
-* Modified version from 0.10.26 to 0.10.28
+* Modified version from 0.10.27 to 0.10.28 due to missed change in public(from 0.10.26 to 0.10.28)
 
 ## 0.10.27 (16/02/2026)
 ### Bug Fixes
@@ -30,7 +43,7 @@
 * Bug fixes for null pointer exceptions when bundle is null in Android
 * Fixed an issue where the text field would not appear for up to 10 seconds when the first bot message included an `assignment` action in IOS
 * Added exception handling to HTML parsing to prevent crash in `Channels List` screen in IOS.
-* Fixed app stop responding to swipe gestures while opening a topic in a parallel conversation in IOS. 
+* Fixed app stop responding to swipe gestures while opening a topic in a parallel conversation in IOS.
 * Fixed an issue where messages sent after the post-resolution feedback survey did not start a new conversation in IOS.
 
 ### Enhancements
@@ -51,12 +64,13 @@
 * Fixed a CursorIndexOutOfBoundsException observed in logs in Android
 * Fixed an issue where the FAQ category list screen remained stuck in an infinite loading state in Android
 * Crash in SDK for StitchFix while fetching messages during launch in iOS
-* Fixed Intermittent Crash in restUser API in iOS
+* Fixed Intermittent Crash in restUser API in iOS 
 * Fixed multi-select bottom sheet reset count and display incorrect value in iOS
 * Fixed Scroll not visible and keyboard not dismissing in iOS
 * Start rating in consecutive feedback messages not working in iOS
 * Fixed issue When bot conversation is assigned to agent the textfield is not displayed in iOS
 * Fixed a crash with Coredata in iOS
+
 
 ## 0.10.25 (20/03/2025)
 ### Bug Fixes
@@ -72,14 +86,14 @@
 * Fixed a memory leak in ConversationDetailActivity in Android.
 * Fixed an issue with edge-to-edge displays on devices with Android 15.
 * Config session variables updated on remote config API calls during account switching in iOS.
-* Fix an issue ensuring message content is in the correct order in iOS.
+* Fix an issue ensuring message content is in the correct order in iOS. 
 * Fix UI issue when feedback bot message was the last node in iOS.
 * Reduced SPM installation dependency size in iOS.
 * Fix an alignment issue with HTML list content in messages in iOS
-* Fixed an issue where the unread message count was not updating instantly when opening the app in iOS.
+* Fixed an issue where the unread message count was not updating instantly when opening the app in iOS. 
 * Fixed an issue where pending messages were not fetched when reopening the chat after a period of time in iOS.
-* Fixed an issue where welcome messages for custom bots were not displayed on the topic list screen in iOS.
-* Fixed an isolated issue where the bot would trigger unexpectedly in the middle of a chat in iOS.
+* Fixed an issue where welcome messages for custom bots were not displayed on the topic list screen in iOS. 
+* Fixed an isolated issue where the bot would trigger unexpectedly in the middle of a chat in iOS. 
 * Added a missing property option for the FCEventButtonSent event sent from the SDK in iOS.
 
 ### Enhancement
@@ -98,6 +112,7 @@
 ### Features
 * Exposed an FCEventAgentProfileClick event to retrieve agent details upon clicking the agent profile in Android and iOS.
 * Added a public API to set and get the agent profile click redirection URI in Android.
+
 ### Bug Fixes
 * Fixed an issue where an extra space appeared in the carousel card of user messages in Android.
 * Fixed an issue with carousel card selection in specific scenarios in Android.
@@ -178,6 +193,7 @@
 * Fix for the agent response expectation time taking a few seconds to update after a locale change in Android.
 * Fix for incorrect Preview messages being shown in Channels list in Android.
 * Fix for failing read receipts in conversations in Android.
+
 
 ## 0.10.17 (21/06/2024)
 ### Enhancement
