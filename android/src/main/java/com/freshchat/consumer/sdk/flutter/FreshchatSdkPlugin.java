@@ -20,6 +20,7 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+
 import com.freshchat.consumer.sdk.ConversationOptions;
 import com.freshchat.consumer.sdk.Event;
 import com.freshchat.consumer.sdk.FaqOptions;
@@ -60,11 +61,11 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
     private FreshchatSDKBroadcastReceiver userInteractionReceiver;
     private static final String LOG_TAG = "FRESHCHAT_FLUTTER";
     private static final String ERROR_TAG = "FRESHCHAT_ERROR";
-    private static final String FRESHCHAT_USER_RESTORE_ID_GENERATED = "FRESHCHAT_USER_RESTORE_ID_GENERATED";
-    private static final String FRESHCHAT_EVENTS = "FRESHCHAT_EVENTS";
     private static final String ERROR_INVALID_PARAMETER = "INVALID_PARAMETER";
     private static final String TOPIC_NAME = "topicName ";
     private static final String REFERENCE_ID = "referenceId ";
+    private static final String FRESHCHAT_USER_RESTORE_ID_GENERATED = "FRESHCHAT_USER_RESTORE_ID_GENERATED";
+    private static final String FRESHCHAT_EVENTS = "FRESHCHAT_EVENTS";
     private static final String FRESHCHAT_ACTION_MESSAGE_COUNT_CHANGED = "FRESHCHAT_ACTION_MESSAGE_COUNT_CHANGED";
     private static final String ACTION_OPEN_LINKS = "ACTION_OPEN_LINKS";
     private static final String ACTION_LOCALE_CHANGED_BY_WEBVIEW = "ACTION_LOCALE_CHANGED_BY_WEBVIEW";
@@ -325,7 +326,6 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
             result.error(ERROR_TAG, e.getMessage(), e.toString());
         }
     }
-
     public void showConversationsWithOptions(MethodCall call) {
         try {
             List<String> tags = call.argument("tags");
@@ -651,16 +651,16 @@ public class FreshchatSdkPlugin implements FlutterPlugin, MethodCallHandler {
                     getUnreadCountAsyncForTags(call, result);
                     break;
 
-                case "getUnreadCountAsyncWithReferenceId":
-                    getUnreadCountAsyncWithReferenceId(call, result);
-                    break;
-
                 case "showConversationsWithOptions":
                     showConversationsWithOptions(call);
                     break;
 
                 case "showConversationWithReferenceID":
                     showConversationWithReferenceID(call);
+                    break;
+
+                case "getUnreadCountAsyncWithReferenceId":
+                    getUnreadCountAsyncWithReferenceId(call, result);
                     break;
 
                 case "setUserWithIdToken":
