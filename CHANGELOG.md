@@ -1,12 +1,13 @@
 ## 0.10.32 (09/06/2026)
 ### Enhancement :
-* Optimized the handling for the bot re-trigger issue and reverted bot specific code changes introduced in version 6.5.4 in Android.
+* Optimized the handling for the bot re-trigger issue.
 * Dependencies Updated for libraries in Android.
 * Increased Target SDK version to 36 in Android.
 * Increased MinSDK version to 23 in Android.
 * Migrated LocalBroadcastManager dependency from the deprecated Android Support Library to the AndroidX.
 * Added support for iOS 26 with better support for modern UI frameworks in iOS.
 ### Bug fix :
+* Reverted bot specific code changes introduced in version 6.5.4 in Android.
 * Fixed an issue in the “Browse from Files” upload screen where the keyboard was not dismissed when tapping outside the input area.
 * Fixed the auto-scroll to cursor position issue in the reply editor, allowing users to scroll through the message content while typing.
 
