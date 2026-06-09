@@ -142,7 +142,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.10.30"
+    version: "0.10.32"
   leak_tracker:
     dependency: transitive
     description:
