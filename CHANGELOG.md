@@ -1,3 +1,7 @@
+## 0.10.33 (03/07/2026)
+* Resolved an issue causing occasional crashes during Freshchat deep link handling on select Android devices in Android.
+* Replaced deprecated edge-to-edge APIs to clear Play Console warning in Android.
+
 ## 0.10.32 (09/06/2026)
 ### Enhancement :
 * Optimized the handling for the bot re-trigger issue.
