@@ -1,3 +1,9 @@
+## 0.10.34 (04/08/2026)
+### Bug fix :
+* Fixed an Android-only regression (introduced in 6.4.2) where HTML markup typed by an end user in the chat input rendered as a live, clickable link instead of plain text — reopening a previously fixed HTML injection issue. Free-typed message text is now escaped exactly once (on send) and decoded exactly once (on render), while trusted, business-configured content (quick-reply/flow-layout button labels, date/time picker selections) continues to render its intended HTML formatting in Android.
+* Fixed the same HTML injection issue in the CSAT/bot free-text comment feedback flow, which shared the same untrusted input source but was not covered by the original fix in Android.
+* Fixed the message composer showing a numeric keyboard for free-text bot replies after an earlier step in the same conversation had requested a phone/number/email/OTP input in Android.
+
 ## 0.10.33 (03/07/2026)
 * Resolved an issue causing occasional crashes during Freshchat deep link handling on select Android devices in Android.
 * Replaced deprecated edge-to-edge APIs to clear Play Console warning in Android.
