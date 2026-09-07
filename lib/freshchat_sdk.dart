@@ -42,25 +42,13 @@ enum Priority {
 
 extension getPriorityValue on Priority {
   int priorityValue() {
-    switch (this) {
-      case Priority.PRIORITY_DEFAULT:
-        return 0;
-
-      case Priority.PRIORITY_LOW:
-        return -1;
-
-      case Priority.PRIORITY_MIN:
-        return -2;
-
-      case Priority.PRIORITY_HIGH:
-        return 1;
-
-      case Priority.PRIORITY_MAX:
-        return 2;
-
-      default:
-        return 0;
-    }
+    return switch (this) {
+      Priority.PRIORITY_DEFAULT => 0,
+      Priority.PRIORITY_LOW => -1,
+      Priority.PRIORITY_MIN => -2,
+      Priority.PRIORITY_HIGH => 1,
+      Priority.PRIORITY_MAX => 2,
+    };
   }
 }
 
@@ -76,31 +64,15 @@ enum Importance {
 
 extension getImportanceValue on Importance {
   int importanceValue() {
-    switch (this) {
-      case Importance.IMPORTANCE_UNSPECIFIED:
-        return -1000;
-
-      case Importance.IMPORTANCE_NONE:
-        return 0;
-
-      case Importance.IMPORTANCE_MIN:
-        return 1;
-
-      case Importance.IMPORTANCE_LOW:
-        return 2;
-
-      case Importance.IMPORTANCE_DEFAULT:
-        return 3;
-
-      case Importance.IMPORTANCE_HIGH:
-        return 4;
-
-      case Importance.IMPORTANCE_MAX:
-        return 5;
-
-      default:
-        return 3;
-    }
+    return switch (this) {
+      Importance.IMPORTANCE_UNSPECIFIED => -1000,
+      Importance.IMPORTANCE_NONE => 0,
+      Importance.IMPORTANCE_MIN => 1,
+      Importance.IMPORTANCE_LOW => 2,
+      Importance.IMPORTANCE_DEFAULT => 3,
+      Importance.IMPORTANCE_HIGH => 4,
+      Importance.IMPORTANCE_MAX => 5,
+    };
   }
 }
 

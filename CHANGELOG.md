@@ -1,3 +1,11 @@
+## NEXT
+### Enhancement :
+* Added support for Swift Package Manager on iOS
+* Fixed deprecation warnings in the example app for Flutter 3.44
+
+### Breaking Change
+* Updated minimum Flutter version to 3.44.0 to support Swift Package Manager
+
 ## 0.10.34 (04/08/2026)
 ### Bug fix :
 * Fixed an Android-only regression (introduced in 6.4.2) where HTML markup typed by an end user in the chat input rendered as a live, clickable link instead of plain text — reopening a previously fixed HTML injection issue. Free-typed message text is now escaped exactly once (on send) and decoded exactly once (on render), while trusted, business-configured content (quick-reply/flow-layout button labels, date/time picker selections) continues to render its intended HTML formatting in Android.

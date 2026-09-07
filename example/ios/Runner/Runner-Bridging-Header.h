@@ -1,2 +1,2 @@
 #import "GeneratedPluginRegistrant.h"
-#import "FreshchatSdkPlugin.h"
+#import <freshchat_sdk/FreshchatSdkPlugin.h>

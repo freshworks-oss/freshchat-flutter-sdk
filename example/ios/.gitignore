@@ -20,6 +20,7 @@ Flutter/Flutter.podspec
 Flutter/Generated.xcconfig
 Flutter/app.flx
 Flutter/app.zip
+Flutter/ephemeral
 Flutter/flutter_assets/
 Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
@@ -30,3 +31,5 @@ Runner/GeneratedPluginRegistrant.*
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+
+**/swiftpm/Package.resolved

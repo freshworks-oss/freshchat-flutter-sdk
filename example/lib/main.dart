@@ -1148,115 +1148,111 @@ class _FaqTagAlertState extends State<FaqTagAlert> {
         style: TextStyle(fontFamily: 'OpenSans-Regular'),
       ),
       content: Form(
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: "FAQ Title",
+        child: RadioGroup<FaqType>(
+          groupValue: faqType,
+          onChanged: (FaqType? val) {
+            setState(() {
+              faqType = val!;
+            });
+          },
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "FAQ Title",
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      faqTitle = val;
+                    });
+                  }),
+              TextFormField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "FAQ Tags",
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      faqTag = val;
+                    });
+                  }),
+              ListTile(
+                title: const Text('Categories'),
+                leading: Radio(
+                  value: FaqType.Categories,
                 ),
-                onChanged: (val) {
-                  setState(() {
-                    faqTitle = val;
-                  });
-                }),
-            TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: "FAQ Tags",
+              ),
+              ListTile(
+                title: const Text('Articles'),
+                leading: Radio(
+                  value: FaqType.Articles,
                 ),
-                onChanged: (val) {
+              ),
+              TextFormField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Contact Us Title",
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      contactUsTitle = val;
+                    });
+                  }),
+              TextFormField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Contact Us Tags",
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      contactUsTags = val;
+                    });
+                  }),
+              CheckboxListTile(
+                title: Text("Show Contact Us on FAQ Screens"),
+                value: showContactUsOnFaqScreens,
+                onChanged: (bool? newValue) {
                   setState(() {
-                    faqTag = val;
-                  });
-                }),
-            ListTile(
-              title: const Text('Categories'),
-              leading: Radio(
-                value: FaqType.Categories,
-                groupValue: faqType,
-                onChanged: (FaqType? val) {
-                  setState(() {
-                    faqType = val!;
+                    showContactUsOnFaqScreens = newValue!;
                   });
                 },
+                controlAffinity:
+                    ListTileControlAffinity.leading, //  <-- leading Checkbox
               ),
-            ),
-            ListTile(
-              title: const Text('Articles'),
-              leading: Radio(
-                value: FaqType.Articles,
-                groupValue: faqType,
-                onChanged: (FaqType? val) {
+              CheckboxListTile(
+                title: Text("Show FAQ Categories as Grid"),
+                value: showFaqGrid,
+                onChanged: (bool? newValue) {
                   setState(() {
-                    faqType = val!;
+                    showFaqGrid = newValue!;
                   });
                 },
+                controlAffinity: ListTileControlAffinity.leading,
               ),
-            ),
-            TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: "Contact Us Title",
-                ),
-                onChanged: (val) {
+              CheckboxListTile(
+                title: Text("Show Contact Us on App Bar"),
+                onChanged: (bool? newValue) {
                   setState(() {
-                    contactUsTitle = val;
+                    showContactUsOnAppBar = newValue!;
                   });
-                }),
-            TextFormField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: "Contact Us Tags",
-                ),
-                onChanged: (val) {
+                },
+                controlAffinity: ListTileControlAffinity.leading,
+                value: false, //  <-- leading Checkbox
+              ),
+              CheckboxListTile(
+                title: Text("Show Contact Us on FAQ not helpful"),
+                value: showContactUsOnFaqNotHelpful,
+                onChanged: (bool? newValue) {
                   setState(() {
-                    contactUsTags = val;
+                    showContactUsOnFaqNotHelpful = newValue!;
                   });
-                }),
-            CheckboxListTile(
-              title: Text("Show Contact Us on FAQ Screens"),
-              value: showContactUsOnFaqScreens,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  showContactUsOnFaqScreens = newValue!;
-                });
-              },
-              controlAffinity:
-                  ListTileControlAffinity.leading, //  <-- leading Checkbox
-            ),
-            CheckboxListTile(
-              title: Text("Show FAQ Categories as Grid"),
-              value: showFaqGrid,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  showFaqGrid = newValue!;
-                });
-              },
-              controlAffinity: ListTileControlAffinity.leading,
-            ),
-            CheckboxListTile(
-              title: Text("Show Contact Us on App Bar"),
-              onChanged: (bool? newValue) {
-                setState(() {
-                  showContactUsOnAppBar = newValue!;
-                });
-              },
-              controlAffinity: ListTileControlAffinity.leading,
-              value: false, //  <-- leading Checkbox
-            ),
-            CheckboxListTile(
-              title: Text("Show Contact Us on FAQ not helpful"),
-              value: showContactUsOnFaqNotHelpful,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  showContactUsOnFaqNotHelpful = newValue!;
-                });
-              },
-              controlAffinity:
-                  ListTileControlAffinity.leading, //  <-- leading Checkbox
-            ),
-          ],
+                },
+                controlAffinity:
+                    ListTileControlAffinity.leading, //  <-- leading Checkbox
+              ),
+            ],
+          ),
         ),
       ),
       actions: <Widget>[
