@@ -1,4 +1,4 @@
-#import "FreshchatSdkPlugin.h"
+#import "./include/freshchat_sdk/FreshchatSdkPlugin.h"
 #if __has_include("FreshchatSDK.h")
 #import "FreshchatSDK.h"
 #else
