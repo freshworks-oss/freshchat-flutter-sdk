@@ -1,4 +1,12 @@
 ## 0.10.35 (22/09/2026)
+### Enhancement
+* Added Swift Package Manager (SPM) support for iOS. The plugin now ships an `ios/freshchat_sdk/Package.swift` alongside the existing CocoaPods podspec, so apps building with Flutter's Swift Package Manager integration no longer see the "package(s) do not support Swift Package Manager" warning. CocoaPods continues to work unchanged. The native `FreshchatSDK` iOS dependency is resolved from `https://github.com/freshworks-oss/freshchat-ios` (v6.4.9). Requires Flutter 3.24+ for SPM; minimum iOS deployment target is 13.0.
+### Bug fix
+* Fixed `openFreshchatDeeplink` on iOS incorrectly dispatching to `registerForEvent`, which prevented deeplinks from opening.
+* Whitelisted the example app's Firebase config (`google-services.json`, `GoogleService-Info.plist`) as `false_secrets` in `pubspec.yaml` so `dart pub publish`'s leak scanner stops blocking the release. These are Firebase client config keys, app-restricted by package name / SHA-1, not auth secrets — safe to publish per Firebase's own docs (https://dart.dev/go/false-secrets).
+* Untracked `freshchat_sdk.iml` (IDE metadata, already covered by `.gitignore`) — it was tripping `dart pub publish`'s "checked-in file is ignored by .gitignore" validation warning, which fails non-interactively in CI.
+### Migration note (iOS push notifications)
+* Apps that forward push notifications to Freshchat from a Swift `AppDelegate` must update the Objective-C bridging header import from `#import "FreshchatSdkPlugin.h"` to `#import <freshchat_sdk/FreshchatSdkPlugin.h>`. The module form resolves under both SPM and CocoaPods. No change is needed if you do not reference `FreshchatSdkPlugin` from native code.
 
 ## 0.10.34 (04/08/2026)
 ### Bug fix :
