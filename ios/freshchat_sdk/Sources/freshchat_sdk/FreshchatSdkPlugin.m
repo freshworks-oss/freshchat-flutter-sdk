@@ -574,7 +574,7 @@ NSNotificationCenter *center;
     }else if([@"registerForEvent" isEqualToString:call.method]){
         [instance registerForEvent:call];
     }else if([@"openFreshchatDeeplink" isEqualToString:call.method]){
-        [instance registerForEvent:call];
+        [instance openFreshchatDeeplink:call];
     }else if([@"linkifyWithPattern" isEqualToString:call.method]){
         NSLog(@"Linkify not available for iOS");
     }else if([@"notifyAppLocaleChange" isEqualToString:call.method]){

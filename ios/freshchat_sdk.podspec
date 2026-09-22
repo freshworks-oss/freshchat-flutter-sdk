@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'freshchat_sdk'
-  s.version          = '0.10.34'
+  s.version          = '0.10.35'
   s.summary          = 'Freshchat Flutter SDK - iOS'
   s.description      = <<-DESC
   Freshchat Flutter SDK - iOS.
@@ -13,8 +13,9 @@ Pod::Spec.new do |s|
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Freshworks' => 'support@freshchat.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'freshchat_sdk/Sources/freshchat_sdk/**/*.{h,m}'
+  s.public_header_files = 'freshchat_sdk/Sources/freshchat_sdk/**/*.h'
+  s.module_map = 'freshchat_sdk/Sources/freshchat_sdk/include/FreshchatSdkPlugin.modulemap'
   s.dependency 'Flutter'
   s.platform = :ios
   s.dependency "FreshchatSDK", '6.4.9'
