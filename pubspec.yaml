@@ -31,3 +31,11 @@ flutter:
 
 assets:
   - pubspec.yaml
+
+# Firebase client config for the example app. These keys are app-restricted
+# (package name / SHA-1), not auth secrets — safe to publish per Firebase's
+# own docs. pub's leak scanner flags them as false positives.
+# See https://dart.dev/go/false-secrets
+false_secrets:
+  - /example/android/app/google-services.json
+  - /example/ios/Runner/GoogleService-Info.plist
