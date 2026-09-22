@@ -1,9 +1,3 @@
-## 0.10.35 (22/09/2026)
-### Enhancement
-* Added Swift Package Manager (SPM) support for iOS. The plugin now ships `ios/freshchat_sdk/Package.swift` alongside the existing CocoaPods podspec, so apps building with Flutter's SPM integration no longer see the "package(s) do not support Swift Package Manager" warning. CocoaPods continues to work unchanged. Requires Flutter 3.24+ for SPM; minimum iOS deployment target is 13.0.
-### Bug fix
-* Fixed `openFreshchatDeeplink` on iOS incorrectly dispatching to `registerForEvent`, which prevented deeplinks from opening.
-
 ## 0.10.34 (04/08/2026)
 ### Bug fix :
 * Fixed an Android-only regression (introduced in 6.4.2) where HTML markup typed by an end user in the chat input rendered as a live, clickable link instead of plain text — reopening a previously fixed HTML injection issue. Free-typed message text is now escaped exactly once (on send) and decoded exactly once (on render), while trusted, business-configured content (quick-reply/flow-layout button labels, date/time picker selections) continues to render its intended HTML formatting in Android.
