@@ -33,3 +33,58 @@ under both SPM and CocoaPods:
 
 (Previously `#import "FreshchatSdkPlugin.h"`. The quoted form only resolves under
 CocoaPods; the angle-bracket module form works for both.)
+
+### iOS 27+ UIScene support
+
+From iOS 27 onwards, the setup for the plugin changes, to support `UIScene`.
+
+1) Add a new Swift file called `SceneDelegate` to your project, which extends `FlutterSceneDelegate`
+2) Register that `SceneDelegate` in your Info.plist:
+```xml
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string>UIWindowScene</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneConfigurationName</key>
+					<string>flutter</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+```
+
+   See https://docs.flutter.dev/release/breaking-changes/uiscenedelegate#create-a-scenedelegate-optional
+3) Ensure that the `SceneDelegate` creates and shows the `FreshchatSdkPluginWindow` upon connecting to a UIScene
+
+```swift
+import FreshchatSDK
+import Flutter
+import UIKit
+
+class SceneDelegate: FlutterSceneDelegate {
+  override func scene(
+    _ scene: UIScene,
+    willConnectTo session: UISceneSession,
+    options connectionOptions: UIScene.ConnectionOptions
+  ) {
+    guard let windowScene = scene as? UIWindowScene else { return }
+    let viewController = window?.rootViewController as? FlutterViewController
+    
+    window = FreshchatSdkPluginWindow(windowScene: windowScene)
+    window?.rootViewController = viewController
+    window?.makeKeyAndVisible()
+  }
+}
+```
+4) Remove the setup code that created a `FreshchatSdkPluginWindow` from your `AppDelegate.swift`
