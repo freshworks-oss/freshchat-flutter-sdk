@@ -30,6 +30,9 @@ NSNotificationCenter *center;
     instance = [[FreshchatSdkPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
     center = [NSNotificationCenter defaultCenter];
+
+    [registrar addApplicationDelegate:instance];
+    [registrar addSceneDelegate:instance];
 }
 
 
