@@ -1,3 +1,11 @@
+## 0.10.36 (09/10/2026)
+### Enhancement
+* Upgraded Freshchat Android SDK to 6.5.15.
+* Upgraded Freshchat iOS SDK to 6.5.0.
+### Bug fix
+* Hardened bot flow handling so a user's first reply to a bot reliably engages the bot, including on devices with an inaccurate system clock and when the reply is sent after a period without connectivity in Android.
+* Fixed an issue where the bot's welcome message did not reappear the first time a user returned to a chat that a bot had ended in Android.
+
 ## 0.10.35 (22/09/2026)
 ### Enhancement
 * Added Swift Package Manager (SPM) support for iOS. The plugin now ships an `ios/freshchat_sdk/Package.swift` alongside the existing CocoaPods podspec, so apps building with Flutter's Swift Package Manager integration no longer see the "package(s) do not support Swift Package Manager" warning. CocoaPods continues to work unchanged. The native `FreshchatSDK` iOS dependency is resolved from `https://github.com/freshworks-oss/freshchat-ios` (v6.4.9). Requires Flutter 3.24+ for SPM; minimum iOS deployment target is 13.0.
