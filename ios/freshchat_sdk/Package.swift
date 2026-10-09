@@ -16,7 +16,7 @@ let package = Package(
     .package(name: "FlutterFramework", path: "../FlutterFramework"),
     // Native Freshchat iOS SDK, distributed as a binary xcframework Swift package.
     // Keep this version in sync with the `FreshchatSDK` dependency in freshchat_sdk.podspec.
-    .package(url: "https://github.com/freshworks-oss/freshchat-ios.git", exact: "6.4.9")
+    .package(url: "https://github.com/freshworks-oss/freshchat-ios.git", exact: "6.5.0")
   ],
   targets: [
     .target(
