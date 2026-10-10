@@ -5,6 +5,10 @@
 #import "FreshchatSDK/FreshchatSDK.h"
 #endif
 
+@interface FreshchatSdkPlugin ()
+@property(nonatomic, weak) NSObject<FlutterPluginRegistrar> *registrar;
+@end
+
 @implementation FreshchatSdkPluginWindow
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
@@ -28,8 +32,12 @@ NSNotificationCenter *center;
                methodChannelWithName:@"freshchat_sdk"
                binaryMessenger:[registrar messenger]];
     instance = [[FreshchatSdkPlugin alloc] init];
+    instance.registrar = registrar;
     [registrar addMethodCallDelegate:instance channel:channel];
     center = [NSNotificationCenter defaultCenter];
+
+    [registrar addApplicationDelegate:instance];
+    [registrar addSceneDelegate:instance];
 }
 
 
@@ -60,14 +68,17 @@ NSNotificationCenter *center;
     }
 }
 
+-(UIViewController *)rootViewController{
+    return self.registrar.viewController;
+}
 
 - (void)showConversations{
-    UIViewController *visibleVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    UIViewController *visibleVC = [self rootViewController];
     [[Freshchat sharedInstance]showConversations:visibleVC];
 }
 
 -(void)showFAQs{
-    UIViewController *visibleVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    UIViewController *visibleVC = [self rootViewController];
     [[Freshchat sharedInstance] showFAQs:visibleVC];
 }
 
@@ -177,7 +188,7 @@ NSNotificationCenter *center;
         if(![contactusTagsList isEqual:[NSNull null]] && ![contactUsTitle isEqual:[NSNull null]]){
             [options filterContactUsByTags:contactusTagsList withTitle:contactUsTitle];
         }
-        UIViewController *visibleVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        UIViewController *visibleVC = [self rootViewController];
         [[Freshchat sharedInstance] showFAQs:visibleVC withOptions:options];
     } @catch (NSException *exception) {
         NSLog(@"Error on showing FAQs with tags: %@ %@", exception.name, exception.reason);
@@ -196,7 +207,7 @@ NSNotificationCenter *center;
             filteredViewTitle = @"";
         }
         [options filterByTags:tags withTitle:filteredViewTitle];
-        UIViewController *visibleVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        UIViewController *visibleVC = [self rootViewController];
         [[Freshchat sharedInstance] showConversations:visibleVC withOptions: options];
     } @catch (NSException *exception) {
         NSLog(@"Error on showing conversations with tags: %@ %@", exception.name, exception.reason);
@@ -207,7 +218,7 @@ NSNotificationCenter *center;
     @try {
         NSString *conversationReferenceID = call.arguments[@"conversationReferenceID"];
         NSString *topicName = call.arguments[@"topicName"];
-        UIViewController *visibleVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        UIViewController *visibleVC = [self rootViewController];
         [[Freshchat sharedInstance] showConversation:visibleVC withTopicName:topicName withConversationReferenceID:conversationReferenceID];
     } @catch (NSException *exception) {
         NSLog(@"Error on showing conversation with reference id: %@ %@", exception.name, exception.reason);
@@ -495,7 +506,7 @@ NSNotificationCenter *center;
 
 
 - (UIViewController*) topMostController {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *topController = [self rootViewController];
     
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
